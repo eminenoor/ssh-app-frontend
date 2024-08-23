@@ -7,6 +7,8 @@ import HeaderComponent from "./components/HeaderComponent";
 import FooterComponent from "./components/FooterComponent";
 import CommandList from "./components/CommandList";
 import SshSenderPage from "./components/SSHSenderPage";
+import AddCommand from "./components/AddCommandPage";
+import AddDevice from "./components/AddDevicePage";
 
 const App: React.FC = () => {
     return (
@@ -14,7 +16,6 @@ const App: React.FC = () => {
             <Routes>
                 <Route path="/login" element={
                   <div>
-                  <HeaderComponent />
                   <Login />
                   <FooterComponent />
                   </div>} /> 
@@ -26,7 +27,6 @@ const App: React.FC = () => {
                   </div>} /> 
                 <Route path="/" element={
                   <div>
-                  <HeaderComponent />
                   <Login />
                   <FooterComponent />
                   </div>} /> 
@@ -42,8 +42,13 @@ const App: React.FC = () => {
                   <CommandList />
                   <FooterComponent />
                 </div>} />
-                <Route path="/" element={<DeviceList />} />
-                <Route path="/ssh-sender/:id" element={<SshSenderPage />} />
+                <Route path="/ssh-sender/:id" element={
+                  <div>
+                  <HeaderComponent />
+                  <SshSenderPage />
+                  </div>} />
+                <Route path="/add-command" element={<AddCommand />} />
+                <Route path="/add-device" element={<AddDevice />} />
             </Routes> 
         </Router>
     );

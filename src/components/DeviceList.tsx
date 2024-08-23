@@ -37,7 +37,7 @@ const DeviceList = () => {
   return (
     <div className="container mt-5">
       <h2 className="text-center mb-4">List of Devices</h2>
-      <nav className="navbar navbar-light bg-light">
+      <nav className="navbar navbar-light">
         <form className="form-inline">
           <button className="btn btn-primary mb-2 me-md-2" onClick={addNewDevice}>Add Device</button>
           <button className="btn btn-danger mb-2" onClick={logout}>Logout</button>

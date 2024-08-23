@@ -24,6 +24,11 @@ const Login: React.FC = () => {
 
     return (
         <div>
+            <nav className="navbar navbar-dark bg-dark">
+                <div className="container-fluid d-flex justify-content-center">
+                <span className="navbar-brand mb-0 h1">SSH Command Executer</span>
+                </div>
+            </nav>
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div>

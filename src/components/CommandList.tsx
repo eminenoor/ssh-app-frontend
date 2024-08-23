@@ -34,11 +34,11 @@ const CommandList = () => {
   return (
     <div className="container mt-5">
         <h2 className="text-center mb-4">List of Commands</h2>
-        <nav className="navbar navbar-light bg-light">
-                <form className="form-inline">
-                    <button className="btn btn-primary mb-2 me-md-4" onClick={addNewCommand}>Add Command</button>
-                    <button className="btn btn-danger mb-2" onClick={logout}>Logout</button>
-        </form>
+        <nav className="navbar navbar-light">
+            <form className="form-inline">
+                <button className="btn btn-primary mb-2 me-md-4" onClick={addNewCommand}>Add Command</button>
+                <button className="btn btn-danger mb-2" onClick={logout}>Logout</button>
+            </form>
         </nav>
     <div className="table-responsive">
     <table className="table table-stripped-columns table-bordered text-center">
