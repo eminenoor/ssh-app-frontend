@@ -8,7 +8,8 @@ const SshSenderPage: React.FC = () => {
   const device: Device = state?.device;
   const [commands, setCommands] = useState<Command[]>([]);
   const [selectedCommand, setSelectedCommand] = useState<string>("");
-  const [commandResult, setCommandResult] = useState<CommandResult | null>(null);
+  const [commandResult, setCommandResult] = useState<string>("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,24 +50,24 @@ const SshSenderPage: React.FC = () => {
 
     try {
       if (device && selectedCommand) {
-        const response = await axios.post<CommandResult>(
-          `http://localhost:8080/ssh/connect/${device.id}`,
-          null,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            params: { command: selectedCommand },
-          }
-        );
-        setCommandResult(response.data);
-        alert("Command executed successfully: " + response.data.output);
-      } else {
-        alert("Please select a command.");
-      }
-    } catch (error) {
-      console.error("Failed to execute command:", error);
-      alert("Failed to execute the command.");
+        const response = await axios.post(
+            `http://localhost:8080/ssh/connect/${device.id}`,
+            null,
+            {
+                headers: {
+                Authorization: `Bearer ${token}`,
+                },
+                params: { command: selectedCommand },
+            }
+            );
+            setCommandResult(response.data);
+            alert("Command executed successfully: ");
+        } else {
+            alert("Please select a command.");
+        }
+        } catch (error) {
+        console.error("Failed to execute command:", error);
+        alert("Failed to execute the command.");
     }
   };
 
@@ -113,7 +114,7 @@ const SshSenderPage: React.FC = () => {
       </button>
       {commandResult && (
         <div className="alert alert-info mt-3">
-          <strong>Command Output:</strong> {commandResult.output}
+          <strong>Command Output:</strong> {commandResult}
         </div>
       )}
     </div>

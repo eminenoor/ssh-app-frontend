@@ -23,32 +23,40 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className="login-container">
             <nav className="navbar navbar-dark bg-dark">
                 <div className="container-fluid d-flex justify-content-center">
-                <span className="navbar-brand mb-0 h1">SSH Command Executer</span>
+                    <span className="navbar-brand mb-0 h1">SSH Command Executer</span>
                 </div>
             </nav>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username: </label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Password: </label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                <button type="submit">Login</button>
-            </form>
+            <div className="login-form-container">
+                <h2 className="login-title">Login</h2>
+                <form onSubmit={handleSubmit} className="login-form">
+                    <div className="form-group">
+                        <label>Username: </label>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="form-control"
+                            placeholder="Enter your username"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Password: </label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="form-control"
+                            placeholder="Enter your password"
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-primary btn-lg btn-block">
+                        Login
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
