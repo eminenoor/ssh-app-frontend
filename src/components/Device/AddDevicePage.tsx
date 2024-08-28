@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddDevice: React.FC = () => {
   const [ip, setIP] = useState<string>("");
@@ -15,7 +17,7 @@ const AddDevice: React.FC = () => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("You are not authorized. Please log in.");
+      toast.error("You are not authorized. Please log in.");
       navigate("/login");
       return;
     }
@@ -27,20 +29,20 @@ const AddDevice: React.FC = () => {
           Authorization: `Bearer ${token}`, 
         },
       });
-      alert("Device added successfully!");
+      toast.success("Device added successfully!");
       navigate("/devices");
     } catch (error) {
       console.error("There was an error adding the device:", error);
-      alert("Failed to add the device");
+      toast.error("Failed to add the device");
     }
   };
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center mb-4">Add New Device</h2>
+    <div className="form-container">
+      <h2>Add New Device</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="ip">Device IP</label>
+        <div className="form-form-group">
+          <label htmlFor="ip">IP Address</label>
           <input
             type="text"
             className="form-control"
@@ -50,8 +52,8 @@ const AddDevice: React.FC = () => {
             required
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="user_name">User Name</label>
+        <div className="form-form-group">
+          <label htmlFor="user_name">Username</label>
           <input
             type="text"
             className="form-control"
@@ -61,7 +63,7 @@ const AddDevice: React.FC = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-form-group">
           <label htmlFor="password">Password</label>
           <input
             type="text"
@@ -72,7 +74,7 @@ const AddDevice: React.FC = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary mt-3">
+        <button type="submit" className="form-btn">
           Add Device
         </button>
       </form>

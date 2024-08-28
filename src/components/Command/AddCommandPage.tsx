@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddCommand: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -15,7 +17,7 @@ const AddCommand: React.FC = () => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("You are not authorized. Please log in.");
+      toast.error("You are not authorized. Please log in.");
       navigate("/login");
       return;
     }
@@ -27,19 +29,19 @@ const AddCommand: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("Command added successfully!");
+      toast.success("Command added successfully!");
       navigate("/commands");
     } catch (error) {
       console.error("There was an error adding the command:", error);
-      alert("Failed to add the command");
+      toast.error("Failed to add the command");
     }
   };
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center mb-4">Add New Command</h2>
+    <div className="form-container">
+      <h2>Add New Command</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-form-group">
           <label htmlFor="name">Command Name</label>
           <input
             type="text"
@@ -50,7 +52,7 @@ const AddCommand: React.FC = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-form-group">
           <label htmlFor="description">Description</label>
           <input
             type="text"
@@ -61,7 +63,7 @@ const AddCommand: React.FC = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-form-group">
           <label htmlFor="command">Command</label>
           <input
             type="text"
@@ -72,7 +74,7 @@ const AddCommand: React.FC = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary mt-3">
+        <button type="submit" className="form-btn">
           Add Command
         </button>
       </form>

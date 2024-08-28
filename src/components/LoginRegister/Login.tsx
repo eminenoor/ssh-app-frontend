@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FaLock, FaUser } from "react-icons/fa";
+import './Login.css';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login: React.FC = () => {
     const [username, setUsername] = useState<string>("");
@@ -15,44 +19,41 @@ const Login: React.FC = () => {
                 password,
             });
             localStorage.setItem("token", response.data.token);
+            localStorage.setItem("username", username);
             navigate("/devices");
         } catch (error) {
             console.error("Login failed", error);
-            alert("Invalid credentials");
+            toast.error("Invalid credentials");
         }
     };
 
     return (
         <div className="login-container">
-            <nav className="navbar navbar-dark bg-dark">
-                <div className="container-fluid d-flex justify-content-center">
-                    <span className="navbar-brand mb-0 h1">SSH Command Executer</span>
-                </div>
-            </nav>
             <div className="login-form-container">
+                <h1 className="header-title">SSH Command Executer</h1>
                 <h2 className="login-title">Login</h2>
                 <form onSubmit={handleSubmit} className="login-form">
                     <div className="form-group">
-                        <label>Username: </label>
                         <input
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             className="form-control"
-                            placeholder="Enter your username"
+                            placeholder="Username" required
                         />
+                        <FaUser className="icon"/>
                     </div>
                     <div className="form-group">
-                        <label>Password: </label>
                         <input
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="form-control"
-                            placeholder="Enter your password"
+                            placeholder="Password" required
                         />
+                        <FaLock className="icon"/>
                     </div>
-                    <button type="submit" className="btn btn-primary btn-lg btn-block">
+                    <button type="submit" className="login">
                         Login
                     </button>
                 </form>
