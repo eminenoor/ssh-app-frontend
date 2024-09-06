@@ -11,6 +11,7 @@ import AddCommand from "./components/Command/AddCommandPage";
 import AddDevice from "./components/Device/AddDevicePage";
 import EditCommand from "./components/Command/EditCommandPage";
 import EditDevice from "./components/Device/EditDevicePage";
+import LogHistoryTable from "./components/LogHistoryTable";
 
 const App: React.FC = () => {
   return (
@@ -97,6 +98,15 @@ const App: React.FC = () => {
               <FooterComponent />
             </div>
           } 
+        />
+        <Route 
+          path="/history"
+          element={
+            <div>
+              <HeaderComponent />
+              <LogHistoryTable />
+            </div>
+          }
         />
       </Routes>
     </Router>

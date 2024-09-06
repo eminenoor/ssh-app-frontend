@@ -61,7 +61,7 @@ const EditDevice: React.FC = () => {
         },
       });
       toast.success("Device updated successfully!");
-      navigate("/deives");
+      navigate("/devices");
     } catch (error) {
       console.error("There was an error updating the device:", error);
       toast.error("Failed to update the device");
